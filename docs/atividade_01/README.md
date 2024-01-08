@@ -63,4 +63,8 @@ The first task was to include the `mux2.vhd` file in the `DE10_LITE_riscvsingle`
 
 ### Development 
 
-After the DE10_LITE_riscvsingle project was created, both `mux2.vhd` and `DE10_LITE_riscvsingle.v` were added. The second was made 'top level' and the FPGA was loaded. The compilation results are available in the "error_log.txt" file and the RTL in the "RTL_viewer.pdf" file inside of "/adendo". In this location, there is also a video demonstrating its behaviour. 
+After the DE10_LITE_riscvsingle project was created, both `mux2.vhd` and `DE10_LITE_riscvsingle.v` were added. The second was made 'top level' and the FPGA was loaded. The compilation results are available in the "error_log.txt" file and the RTL in the "RTL_viewer.pdf" file inside of "/adendo". The video demonstrating its behaviour is available [here].
+
+<!-- REFERENCES -->
+
+[here]: https://drive.google.com/file/d/1cmBYGEAHN1HrErdjnMenWXZzEFrees5T/view?usp=share_link
