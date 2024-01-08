@@ -3,7 +3,7 @@
   <br>
   <b> SCHOOL OF ENGINEERING OF SÃO CARLOS </b>
   <br> <br>
-  <img src="https://github.com/joaocolombari/Projeto2023/assets/105496210/12c81e3e-e19d-46fc-a6e5-63c28e57984e" width="150">
+  <img src="https://github.com/joaocolombari/Projeto2023/assets/105496210/b6cf7a10-fe32-4d49-b1be-8d29e147b0ec" width="150">
   <br> <br>
   DEPARTMENT OF ELECTRICAL AND COMPUTER ENGINEERING
   <br>
