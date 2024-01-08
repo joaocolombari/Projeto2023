@@ -1,0 +1,24 @@
+# Compile of top.vhd was successful.
+# Compile of adder.vhd was successful.
+# Compile of alu.vhd was successful.
+# Compile of aludec.vhd was successful with warnings.
+# Compile of controller.vhd was successful.
+# Compile of datapath.vhd was successful.
+# Compile of dmem.vhd was successful.
+# Compile of extend.vhd was successful.
+# Compile of flopenr.vhd was successful.
+# Compile of flopr.vhd was successful.
+# Compile of fulladder.vhd was successful.
+# Compile of imem.vhd was successful.
+# Compile of maindec.vhd was successful.
+# Compile of mul.vhd was successful.
+# Compile of mul_testbench.vhd was successful.
+# Compile of multiplier.vhd was successful.
+# Compile of mux2.vhd was successful.
+# Compile of mux3.vhd was successful.
+# Compile of regfile.vhd was successful.
+# Compile of riscv_pkg.vhd was successful.
+# Compile of riscvsingle.vhd was successful.
+# Compile of testbench.vhd was successful.
+# 22 compiles, 0 failed with no errors.
+

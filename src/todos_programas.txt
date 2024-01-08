@@ -1,0 +1,1214 @@
+extend.vhd:
+
+library work;
+use work.riscv_pkg.all;
+
+entity extend is
+    generic (
+        WIDTH : natural := 32
+    );
+
+    port (
+        instr:  in  BIT_VECTOR(WIDTH-1 downto 7);
+        immsrc: in  BIT_VECTOR(1 downto 0);
+        immext: out BIT_VECTOR(WIDTH-1 downto 0)
+    );
+end entity extend;
+
+architecture behave of extend is
+
+    signal instruction_signal : BIT_VECTOR(WIDTH - 1 downto 0);
+
+    alias instruction : BIT_VECTOR(WIDTH - 1 downto 0) is instruction_signal;
+
+begin
+    process(instr, immsrc) begin
+        case immsrc is
+            -- I-type
+            when "00" =>
+                instruction_signal <= (WIDTH-1 downto 12 => instr(31)) & instr(31 downto 20);
+
+            -- S-types (stores)
+            when "01" =>
+                instruction_signal <= (WIDTH-1 downto 12 => instr(31)) & instr(31 downto 25) & instr(11 downto 7);
+
+            -- B-type (branches)
+            when "10" =>
+                instruction_signal <= (WIDTH-1 downto 12 => instr(31)) & instr(7) & instr(30 downto 25) & instr(11 downto 8) & '0';
+
+            -- J-type (jal)
+            when "11" =>
+                instruction_signal <= (WIDTH-1 downto 20 => instr(31)) & instr(19 downto 12) & instr(20) & instr(30 downto 21) & '0';
+
+            when others => 
+                instruction_signal <= (others => '0');
+        end case;
+    end process;
+
+    immext <= instruction;
+
+end behave;
+
+flopern.vhd
+
+library work;
+use work.riscv_pkg.all;
+
+entity flopenr is
+
+    generic(
+        Width : natural := 32
+    );
+
+	port(
+		clk, reset, en:     in      BIT;
+		d:                  in      BIT_VECTOR(Width - 1 downto 0);
+		q:                  out     BIT_VECTOR(Width - 1 downto 0)
+	);
+end flopenr;
+
+architecture asynchronous of flopenr is
+begin
+
+    process (clk) is 
+    begin
+        if clk = '1' then
+            if reset = '1' then
+                q <= (others => '0');
+            elsif en = '1' then 
+                q <= d; 
+            end if;
+        end if;
+    end process;
+
+end architecture asynchronous;
+
+flopr.vhd:
+
+library work;
+use work.riscv_pkg.all;
+
+entity flopr is
+
+    generic(
+        Width : natural := 32
+    );
+
+	port(
+		clk, reset:     in      BIT;
+		d:              in      BIT_VECTOR(Width - 1 downto 0);
+		q:              out     BIT_VECTOR(Width - 1 downto 0)
+	);
+end flopr;
+
+architecture asynchronous of flopr is
+begin
+    
+    process (clk, reset)
+    begin
+        if reset = '1' then
+            q <= (others => '0');                   -- Reset assincrono 
+        elsif clk = '1' then                        -- Nao consigo rising_edge() por conta do tipo
+            q <= d;
+        end if;
+    end process;
+	
+end asynchronous;
+
+mux2.vhd:
+
+
+library work;
+use work.riscv_pkg.all;
+
+entity mux2 is
+
+	generic(
+        Width : natural := 32
+    );
+
+	port(
+		d0, d1: in 		BIT_VECTOR(Width - 1 downto 0);
+		s: 		in 		BIT;
+		y: 		out 	BIT_VECTOR(Width - 1 downto 0)
+	);
+end mux2;
+
+architecture behave of mux2 is
+begin
+	with s select y <= 
+			d0 when '0',
+        	d1 when '1';
+end;
+
+mux3.vhd:
+
+library work;
+use work.riscv_pkg.all;
+
+entity mux3 is
+
+    generic(
+        Width : natural := 32
+    );
+
+	port(
+		d0, d1, d2:     in      BIT_VECTOR(Width - 1 downto 0);
+		s:              in      BIT_VECTOR(1 downto 0);
+		y:              out     BIT_VECTOR(Width - 1 downto 0)
+	);
+end mux3;
+
+architecture behave of mux3 is
+begin
+    y <= d0 when (s = "00") else
+         d1 when (s = "01") else
+         d2 when (s = "10") else
+         (others => '0');
+end;
+
+riscv_pkg.vhd:
+
+library work; 
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+use work.all;
+
+package riscv_pkg is
+
+    -- Definicao da constante global
+    constant RISCV_Data_Width : natural := 32;
+
+    -- Declaracao das funcoes 
+    -- i - to_uinteger 
+    function to_uinteger(i0 : BIT_VECTOR) return natural;
+    
+    -- ii - +
+    function "+" (left, right : BIT_VECTOR) return bit_vector;
+
+    -- iii - -
+    function "-" (left, right : BIT_VECTOR) return bit_vector;
+
+	 -----------------------------
+    -- Definicao de componentes-- 
+	 -----------------------------
+	 
+	 -----------------------------
+    -- Mux2
+    component mux2 is
+		generic(
+			Width : natural := RISCV_Data_Width
+		);
+      port(
+			d0, d1:         	in 		    BIT_VECTOR(RISCV_Data_Width - 1 downto 0);
+			s: 		        	in 		    BIT;
+			y: 		        	out	 	    BIT_VECTOR(RISCV_Data_Width - 1 downto 0)
+		);
+    end component mux2;
+	 -----------------------------
+	
+	 -----------------------------
+    -- Mux3 
+    component mux3 is
+		generic(
+			Width : natural := RISCV_Data_Width
+		);
+        port(
+		d0, d1, d2:     		in          BIT_VECTOR(RISCV_Data_Width - 1 downto 0);
+		s:              		in          BIT_VECTOR(1 downto 0);
+		y:              		out         BIT_VECTOR(RISCV_Data_Width- 1 downto 0)
+	    );
+    end component mux3;
+	 -----------------------------
+
+	 -----------------------------
+    -- Flopr
+    component flopr is
+		generic(
+			Width : natural := RISCV_Data_Width
+		);
+      port(
+			clk, reset:     	in          BIT;
+			d:              	in          BIT_VECTOR(RISCV_Data_Width - 1 downto 0);
+			q:              	out         BIT_VECTOR(RISCV_Data_Width - 1 downto 0)
+	   );
+    end component flopr;
+	 -----------------------------
+
+	 -----------------------------
+    -- Flopenr
+    component flopenr is
+		generic(
+			Width : natural := RISCV_Data_Width
+		);
+		port(
+			clk, reset, en: 	in          BIT;
+			d:              	in          BIT_VECTOR(RISCV_Data_Width - 1 downto 0);
+			q:              	out         BIT_VECTOR(RISCV_Data_Width - 1 downto 0)
+	    );
+    end component flopenr;
+	 -----------------------------
+
+	 -----------------------------
+    -- Extend
+    component extend is
+		generic(
+			Width : natural := RISCV_Data_Width
+		);
+      port(
+			instr:          	in          BIT_VECTOR(31 downto 7);
+			immsrc:         	in          BIT_VECTOR(1 downto 0);
+			immext:         	out         BIT_VECTOR(31 downto 0)
+	    );
+    end component extend;
+	 -----------------------------
+
+	 -----------------------------
+    -- Alu
+    component alu is
+		generic(
+			Width : natural := RISCV_Data_Width
+		);
+    	port(
+			a, b:           	in          BIT_VECTOR(RISCV_Data_Width - 1 downto 0);
+			ALUControl:     	in          BIT_VECTOR(2 downto 0);
+			ALUResult:      	out         BIT_VECTOR(RISCV_Data_Width - 1 downto 0);
+			Zero: 				out 			BIT
+		);
+    end component alu;
+	 -----------------------------
+
+	 -----------------------------
+	 -- Regfile
+    component regfile is 
+		generic(
+			Width : natural := RISCV_Data_Width
+		);
+		port(
+			clk: 					in 			BIT;
+			we3: 					in 			BIT;
+			a1, a2, a3: 		in 			BIT_VECTOR(4 downto 0);
+			wd3: 					in 			BIT_VECTOR(RISCV_Data_Width - 1 downto 0);
+			rd1, rd2: 			out 			BIT_VECTOR(RISCV_Data_Width - 1 downto 0)
+		);
+    end component regfile;
+	 -----------------------------
+
+	 -----------------------------
+	 -- Adder 
+    component adder is
+		generic(
+			Width : natural := RISCV_Data_Width
+		);
+		port(
+			a, b: 				in 			BIT_VECTOR(RISCV_Data_Width - 1 downto 0);
+			y: 					out 			BIT_VECTOR(RISCV_Data_Width - 1 downto 0)
+		);
+    end component adder;
+	 -----------------------------
+	 
+	 -----------------------------
+	 -- Datapath
+	 component datapath is
+		generic(
+			Width : natural := RISCV_Data_Width
+		);
+		port(
+			clk, reset: 		in 			BIT;
+			ResultSrc: 			in 			BIT_VECTOR(1 downto 0);
+			PCSrc, ALUSrc: 	in 			BIT;
+			RegWrite: 			in 			BIT;
+			ImmSrc: 				in 			BIT_VECTOR(1 downto 0);
+			ALUControl: 		in 			BIT_VECTOR(2 downto 0);
+			Zero: 				out 			BIT;
+			PC: 					buffer 		BIT_VECTOR(RISCV_Data_Width - 1 downto 0);
+			Instr: 				in 			BIT_VECTOR(RISCV_Data_Width - 1 downto 0);
+			ALUResult, WriteData: 
+									buffer 		BIT_VECTOR(RISCV_Data_Width - 1 downto 0);
+			ReadData: 			in 			BIT_VECTOR(RISCV_Data_Width - 1 downto 0)
+		);
+    end component datapath;
+	 -----------------------------
+	 
+	 -----------------------------
+	 -- Maindec
+	 component maindec is
+		generic(
+			Width : natural := RISCV_Data_Width
+		);
+		port(
+			op: 					in 			BIT_VECTOR(6 downto 0);
+			ResultSrc: 			out 			BIT_VECTOR(1 downto 0);
+			MemWrite: 			out 			BIT;
+			Branch, ALUSrc: 	out 			BIT;
+			RegWrite, Jump: 	out 			BIT;
+			ImmSrc: 				out 			BIT_VECTOR(1 downto 0);
+			ALUOp: 				out 			BIT_VECTOR(1 downto 0)
+		);
+    end component maindec;
+	 -----------------------------
+	 
+	 -----------------------------
+	 -- Aludec
+	 component aludec is
+		generic(
+			Width : natural := RISCV_Data_Width
+		);
+		port(
+			opb5: 				in 			BIT;
+			funct3: 				in 			BIT_VECTOR(2 downto 0);
+			funct7b5: 			in 			BIT;
+			ALUOp: 				in 			BIT_VECTOR(1 downto 0);
+			ALUControl: 		out 			BIT_VECTOR(2 downto 0)
+		);
+    end component aludec;
+	 -----------------------------
+	 
+	 -----------------------------
+	 -- Controller
+	 component controller is
+		generic(
+			Width : natural := RISCV_Data_Width
+		);
+		port(
+			op: 					in 			BIT_VECTOR(6 downto 0);
+			funct3: 				in 			BIT_VECTOR(2 downto 0);
+			funct7b5, Zero: 	in 			BIT;
+			ResultSrc: 			out 			BIT_VECTOR(1 downto 0);
+			MemWrite: 			out 			BIT;
+			PCSrc, ALUSrc: 	out 			BIT;
+			RegWrite: 			out 			BIT;
+			Jump: 				buffer 		BIT;
+			ImmSrc: 				out 			BIT_VECTOR(1 downto 0);
+			ALUControl: 		out 			BIT_VECTOR(2 downto 0)
+		);
+	end component controller;
+	-----------------------------
+	
+	-----------------------------
+	-- Riscvsingle
+	component riscvsingle is
+		generic(
+			Width : natural := RISCV_Data_Width
+		);
+	port(
+		clk, reset: 			in 			BIT;
+		PC: 						out 			BIT_VECTOR(RISCV_Data_Width - 1 downto 0);
+		Instr: 					in 			BIT_VECTOR(RISCV_Data_Width - 1 downto 0);
+		MemWrite: 				out 		 	BIT;
+		ALUResult, WriteData: 
+									out 			BIT_VECTOR(RISCV_Data_Width - 1 downto 0);
+		ReadData: 				in 			BIT_VECTOR(RISCV_Data_Width - 1 downto 0)
+	);
+	end component riscvsingle;
+	-----------------------------
+	
+	-----------------------------
+	-- Top
+	component top is
+		generic(
+			Width : natural := RISCV_Data_Width
+		);
+		port(
+			clk, reset: 		in 			BIT;
+			WriteData, DataAdr: 	
+									buffer 		BIT_VECTOR(RISCV_Data_Width - 1 downto 0);
+			MemWrite: 			buffer 		BIT
+		);
+	end component top;
+	-----------------------------
+	
+	-----------------------------
+	-- Testbench
+	component testbench is
+		generic(
+			RISCV_Data_Width : natural := 32
+		);
+	end component testbench;
+	-----------------------------
+	
+	-----------------------------
+	-- Imem
+	component imem is
+		generic(
+			RISCV_Data_Width : natural := 32
+		);
+		port(
+			a: 					in 			BIT_VECTOR(RISCV_Data_Width - 1 downto 0);
+			rd: 					out 			BIT_VECTOR(RISCV_Data_Width - 1 downto 0)
+	);
+	end component imem;
+	-----------------------------
+	
+	-----------------------------
+	-- Dmem
+	component dmem is
+		generic(
+			RISCV_Data_Width : natural := 32
+		);
+		port(
+			clk, we: 			in 			BIT;
+			a, wd: 				in 			BIT_VECTOR(RISCV_Data_Width - 1 downto 0);
+			rd: 					out 			BIT_VECTOR(RISCV_Data_Width - 1 downto 0)
+		);
+	end component dmem;
+	-----------------------------
+	
+	-----------------------------
+	-- FullAdder
+	component fulladder is
+	
+		port( 
+			a,b :           in          BIT;
+			cin :           in          BIT;
+			y :             out         BIT;
+			cout :          out         BIT
+		);
+	end component fulladder;
+	-----------------------------
+	
+	-----------------------------
+	-- Mul
+	component mul is 
+		generic(
+			RISCV_Data_Width : natural := 32
+		);
+	
+		port(
+			a, b:           in          BIT_VECTOR(RISCV_Data_Width - 1 downto 0);
+			y:              out         BIT_VECTOR(2 * RISCV_Data_Width - 1 downto 0)
+		);
+	end component mul;
+	-----------------------------
+	component mul_tb is
+		generic(
+			RISCV_Data_Width : natural := 32
+		);
+	end component mul_tb;
+
+end package riscv_pkg;
+
+package body riscv_pkg is  
+	 --------------------------------------
+	 -- Corpo do pacote para a simulacao --
+	 --------------------------------------
+
+	 --------------------------------------
+    -- i - function to_uinteger
+    function to_uinteger(i0 : BIT_VECTOR) return natural is 
+
+        variable result_integer : natural;
+
+        begin 
+            result_integer := to_integer(unsigned(to_stdlogicvector(i0)));
+        return result_integer;
+    end to_uinteger; 
+	 --------------------------------------
+
+	 --------------------------------------
+    -- ii - function "+"
+	 function "+"(left, right: bit_vector) return bit_vector is
+        variable result: 	bit_vector(left'range);
+        variable carry: 	bit := '0';
+    begin
+		  for i in 0 to (result'length - 1) loop
+            result(i) := left(i) xor right(i) xor carry;
+            carry := (left(i) and right(i)) or ((left(i) or right(i)) and carry);
+        end loop;
+
+        return result;
+    end "+";
+	 --------------------------------------
+
+	 --------------------------------------
+    -- iii - funcion "-" por complemento de 2 usando "+" 
+    function "-" (left, right: bit_vector) return bit_vector is
+
+        variable sub, complemento: bit_vector(left'range);
+    
+        begin
+				complemento := (others => '0');
+				complemento(left'length - 1) := '1';
+            sub := (not right) + complemento;          
+        return  "+"(left , sub); 
+    end function "-";
+	 --------------------------------------
+
+end package body riscv_pkg;
+
+alu.vhd:
+
+library work; 
+use work.riscv_pkg.all;
+
+entity alu is
+	generic(
+        Width : natural := 32
+    );
+
+	port(
+		a, b: 			in 			BIT_VECTOR(Width - 1 downto 0);
+		ALUControl: 	in 			BIT_VECTOR(2 downto 0);
+		ALUResult: 		out 			BIT_VECTOR(Width - 1 downto 0);
+		Overflow: 		out 			BIT;
+		Zero: 			out 			BIT
+	);
+end alu;
+
+architecture synth of alu is
+	constant Result_Zero: 			BIT_VECTOR(Width - 1 downto 0) := (others => '0');
+	constant Short_Zero: 			BIT_VECTOR(Width - 2 downto 0) := (others => '0');
+	signal S, Bout, Carry: 			BIT_VECTOR(Width - 1 downto 0);
+
+begin
+	Carry <= Short_Zero & ALUControl(2);
+	Bout <= (not b) when (ALUControl(2) = '1') else b;
+	S <= a + Bout + Carry;
+
+	-- alu function
+	process(a, b, ALUControl, S)
+		variable ALUResultTmp: BIT_VECTOR(Width - 1 downto 0) := Result_Zero;
+	begin
+		case ALUControl(2 downto 0) is
+			when "000" => ALUResultTmp := a + b;
+			when "001" => ALUResultTmp := a - b;
+			when "010" => ALUResultTmp := a and b;
+			when "011" => ALUResultTmp := a or b;
+			when "101" => ALUResultTmp := Short_Zero & S(Width - 1);
+
+			when others => ALUResultTmp := Result_Zero;
+		end case;
+		ALUResult <= ALUResultTmp;
+		if ALUResultTmp = Result_Zero then 
+			Zero <= '1';
+		else 
+			Zero <= '0';
+		end if;
+		--Zero <= '1' when (ALUResultTmp = Result_Zero) else '0';
+	end process;
+	-- overflow circuit
+	process(all) begin
+		case ALUControl(1 downto 0) is
+			when "01" => Overflow <=
+						(a(Width - 1) and b(Width - 1) and (not (S(Width - 1)))) or
+						((not a(Width - 1)) and (not b(Width - 1)) and S(Width - 1));
+			when "11" => Overflow <=
+						((not a(Width - 1)) and b(Width - 1) and S(Width - 1)) or
+						(a(Width - 1) and (not b(Width - 1)) and (not S(Width - 1)));
+			when others => Overflow <= '0';
+		end case;
+	end process;
+end;
+
+
+regfile.vhd:
+
+library work; 
+use work.riscv_pkg.all;
+
+entity regfile is
+	generic(
+        Width : natural := 32
+    );
+
+	port(
+		clk: 				in 			BIT;
+		we3: 				in 			BIT;
+		a1, a2, a3: 		in 		BIT_VECTOR(4 downto 0);
+		wd3: 				in 			BIT_VECTOR(Width - 1 downto 0);
+		rd1, rd2: 			out 		BIT_VECTOR(Width - 1 downto 0)
+	);
+end regfile;
+
+architecture behave of regfile is
+	type ramtype is array (Width - 1 downto 0) of BIT_VECTOR(Width - 1 downto 0);
+	signal mem: ramtype;
+begin
+	-- three ported register file
+	-- read two ports combinationally (A1/RD1, A2/RD2)
+	-- write third port on rising edge of clock (A3/WD3/WE3)
+	-- register 0 hardwired to 0
+	process(clk) begin
+		if (clk'event and clk='1') then
+			if we3 = '1' then mem(to_uinteger(a3)) <= wd3;
+			end if;
+		end if;
+	end process;
+	process(a1, a2, mem) begin
+		if (to_uinteger(a1) = 0) then rd1 <= (others => '0');
+		else rd1 <= mem(to_uinteger(a1));
+		end if;
+		if (to_uinteger(a2) = 0) then rd2 <= (others => '0');
+		else rd2 <= mem(to_uinteger(a2));
+		end if;
+	end process;
+end;
+
+adder.vhd:
+
+library work; 
+use work.riscv_pkg.all;
+
+entity adder is
+	
+   generic(
+      Width : natural := 32
+   );
+
+	port(
+		a, b: 			in 			BIT_VECTOR(Width - 1 downto 0);
+		y: 				out 			BIT_VECTOR(Width - 1 downto 0)
+	);
+end adder;
+
+architecture behave of adder is
+begin
+	y <= a + b;
+end;
+
+datapath.vhd:
+
+library work;
+use work.riscv_pkg.all;
+
+entity datapath is
+	generic(
+		Width : natural := 32
+	);
+
+	port(
+		clk, reset: 		in 			BIT;
+		ResultSrc: 			in 			BIT_VECTOR(1 downto 0);
+		PCSrc, ALUSrc: 	in 			BIT;
+		RegWrite: 			in 			BIT;
+		ImmSrc: 				in 			BIT_VECTOR(1 downto 0);
+		ALUControl: 		in 			BIT_VECTOR(2 downto 0);
+		Zero: 				out 			BIT;
+		PC: 					buffer 		BIT_VECTOR(Width - 1 downto 0);
+		Instr: 				in 			BIT_VECTOR(Width - 1 downto 0);
+		ALUResult, WriteData: 
+								buffer 		BIT_VECTOR(Width - 1 downto 0);
+		ReadData: 			in 			BIT_VECTOR(Width - 1 downto 0)
+	);
+end datapath;
+
+architecture struct of datapath is	
+	signal PCNext, PCPlus4, PCTarget: 
+												BIT_VECTOR(Width - 1 downto 0);
+	signal ImmExt: 						BIT_VECTOR(Width - 1 downto 0);
+	signal SrcA, SrcB: 					BIT_VECTOR(Width - 1 downto 0);
+	signal Result: 						BIT_VECTOR(Width - 1 downto 0);
+begin
+	-- next PC logic
+	pcreg: flopr 
+		generic map(Width) 
+		port map(
+			clk => clk, 
+			reset => reset, 
+			d => PCNext, 
+			q => PC
+		);
+	pcadd4: adder 
+		generic map(Width) 
+		port map(
+			a => PC, 
+			b => X"00000004", 
+			y => PCPlus4
+		);
+	pcaddbranch: adder 
+		generic map(Width) 
+		port map(
+			a => PC, 
+			b => ImmExt, 
+			y => PCTarget
+		);
+	pcmux: mux2 
+		generic map(Width) 
+		port map(
+			d0 => PCPlus4, 
+			d1 => PCTarget, 
+			s => PCSrc,
+			y => PCNext
+		);
+	-- register file logic
+	rf: regfile 
+		generic map(Width) 
+		port map(
+			clk => clk, 
+			we3 => RegWrite, 
+			a1 => Instr(19 downto 15),
+			a2 => Instr(24 downto 20), 
+			a3 => Instr(11 downto 7),
+			wd3 => Result, 
+			rd1 => SrcA, 
+			rd2 => WriteData
+		);
+	ext: extend 
+		generic map(Width) 
+		port map(
+			instr => Instr(31 downto 7), 
+			immsrc => ImmSrc, 
+			immext => ImmExt
+		);
+	-- ALU logic
+	srcbmux: mux2 
+		generic map(Width) 
+		port map(
+			d0 => WriteData, 
+			d1 => ImmExt,
+			s => ALUSrc, 
+			y => SrcB
+		);
+	mainalu: alu 
+		generic map(Width) 
+		port map(
+			a => SrcA, 
+			b => SrcB, 
+			ALUControl => ALUControl, 
+			ALUResult => ALUResult, 
+			Zero => Zero
+		);
+	resultmux: mux3 
+		generic map(Width) 
+		port map(
+			d0 => ALUResult, 
+			d1 => ReadData,
+			d2 => PCPlus4, 
+			s => ResultSrc,
+			y => Result
+		);
+end;
+
+maindec.vhd:
+
+library work;
+use work.riscv_pkg.all;
+
+entity maindec is
+	
+   generic(
+      Width : natural := 32
+   );
+
+	port(
+		op: 			in 			BIT_VECTOR(6 downto 0);
+		ResultSrc: 		out 		BIT_VECTOR(1 downto 0);
+		MemWrite: 		out 		BIT;
+		Branch, ALUSrc: out 		BIT;
+		RegWrite, Jump: out 		BIT;
+		ImmSrc: 		out 		BIT_VECTOR(1 downto 0);
+		ALUOp: 			out 		BIT_VECTOR(1 downto 0)
+	);
+end maindec;
+
+architecture behave of maindec is
+	signal controls: BIT_VECTOR(10 downto 0);
+begin
+	process(op) begin
+		case op is
+		   -- Adicionando a instrucao MUL
+			when "0110011" => controls <= "10000000100"; -- valores de controle da MUL
+																		-- com base no que esta dito no 
+																		-- fina deste codigo
+			when "0000011" => controls <= "10010010000"; -- lw
+			when "0100011" => controls <= "00111000000"; -- sw
+			when "0110011" => controls <= "10000000100"; -- R-type	("1--00000100")
+			when "1100011" => controls <= "01000001010"; -- beq
+			when "0010011" => controls <= "10010000100"; -- I-type ALU
+			when "1101111" => controls <= "11100100001"; -- jal
+			when others => controls <= "00000000000"; -- not valid	("-----------")
+		end case;
+	end process;
+	
+	(RegWrite, ImmSrc(1), ImmSrc(0), ALUSrc, MemWrite,
+	ResultSrc(1), ResultSrc(0), Branch, ALUOp(1), ALUOp(0),
+	Jump) <= controls;
+end;
+
+aludec.vhd:
+
+library work;
+use work.riscv_pkg.all;
+
+entity aludec is
+	
+   generic(
+      Width : natural := 32
+   );
+
+	port(
+		opb5: 			in 			BIT;
+		funct3: 			in 			BIT_VECTOR(2 downto 0);
+		funct7b5: 		in 			BIT;
+		ALUOp: 			in 			BIT_VECTOR(1 downto 0);
+		ALUControl: 	out 			BIT_VECTOR(2 downto 0)
+	);
+end aludec;
+
+architecture behave of aludec is
+	signal RtypeSub: BIT;
+begin
+	RtypeSub <= funct7b5 and opb5; -- TRUE for R-type subtract
+	process(opb5, funct3, funct7b5, ALUOp, RtypeSub) begin
+		case ALUOp is
+			when "00" => ALUControl <= "000"; -- addition
+			when "01" => ALUControl <= "001"; -- subtraction
+			when others => case funct3 is -- R-type or I-type ALU
+				when "000" => if RtypeSub = '1' then
+									ALUControl <= "001"; -- sub
+								else
+									ALUControl <= "000"; -- add, addi
+								end if;
+				when "010" => ALUControl <= "101"; -- slt, slti
+				when "110" => ALUControl <= "011"; -- or, ori
+				when "111" => ALUControl <= "010"; -- and, andi
+				when others => ALUControl <= "000"; -- unknown	("---")
+			end case;
+		end case;
+	end process;
+end;
+
+controller.vhd:
+
+library work;
+use work.riscv_pkg.all;
+
+entity controller is
+	
+   generic(
+      Width : natural := 32
+   );
+
+	port(
+		op: 			in 			BIT_VECTOR(6 downto 0);
+		funct3: 		in 			BIT_VECTOR(2 downto 0);
+		funct7b5, Zero: in 			BIT;
+		ResultSrc: 		out 		BIT_VECTOR(1 downto 0);
+		MemWrite: 		out 		BIT;
+		PCSrc, ALUSrc: 	out 		BIT;
+		RegWrite: 		out 		BIT;
+		Jump: 			buffer 		BIT;
+		ImmSrc: 		out 		BIT_VECTOR(1 downto 0);
+		ALUControl: 	out 		BIT_VECTOR(2 downto 0)
+	);
+end controller;
+
+architecture struct of controller is
+	
+	signal ALUOp: BIT_VECTOR(1 downto 0);
+	signal Branch: BIT;
+begin
+	md: maindec 
+	generic map (Width)  
+	port map(
+		op => op, 
+		ResultSrc => ResultSrc, 
+		MemWrite => MemWrite, 
+		Branch => Branch,
+		ALUSrc => ALUSrc, 
+		RegWrite => RegWrite, 
+		Jump => Jump, 
+		ImmSrc => ImmSrc, 
+		ALUOp => ALUOp
+	);
+	ad: aludec 
+	generic map (Width) 
+	port map(
+		opb5 => op(5), 
+		funct3 => funct3, 
+		funct7b5 => funct7b5, 
+		ALUOp => ALUOp, 
+		ALUControl => ALUControl
+	);
+	PCSrc <= (Branch and Zero) or Jump;
+end;
+
+riscvsingle.vhd:
+
+library work; 
+use work.riscv_pkg.all;
+
+entity riscvsingle is
+	generic(
+		Width : natural := 32
+	);
+	port(
+		clk, reset: 		in 			BIT;
+		PC: 				out 		BIT_VECTOR(Width - 1 downto 0);
+		Instr: 				in 			BIT_VECTOR(Width - 1 downto 0);
+		MemWrite: 			out 		BIT;
+		ALUResult, WriteData: 
+							out 		BIT_VECTOR(Width - 1 downto 0);
+		ReadData: 			in 			BIT_VECTOR(Width - 1 downto 0)
+	);
+end riscvsingle;
+
+architecture struct of riscvsingle is	
+	signal ALUSrc, RegWrite, Jump, Zero, PCSrc: BIT;
+	signal ResultSrc, ImmSrc: BIT_VECTOR(1 downto 0);
+	signal ALUControl: BIT_VECTOR(2 downto 0);
+begin
+	c: controller 
+		generic map (Width) 
+		port map(
+			op => Instr(6 downto 0), 
+			funct3 => Instr(14 downto 12),
+			funct7b5 => Instr(30), 
+			Zero => Zero, 
+			ResultSrc => ResultSrc, 
+			MemWrite => MemWrite,
+			PCSrc => PCSrc, 
+			ALUSrc => ALUSrc, 
+			RegWrite => RegWrite, 
+			Jump => Jump,
+			ImmSrc => ImmSrc, 
+			ALUControl => ALUControl
+		);
+	dp: datapath 
+		generic map (Width)
+		port map(
+			clk => clk, 
+			reset => reset, 
+			ResultSrc => ResultSrc, 
+			PCSrc => PCSrc, 
+			ALUSrc => ALUSrc,
+			RegWrite => RegWrite,
+			ImmSrc => ImmSrc, 
+			ALUControl => ALUControl, 
+			Zero => Zero,
+			PC => PC, 
+			Instr => Instr, 
+			ALUResult => ALUResult, 
+			WriteData => WriteData,
+			ReadData => ReadData
+		);
+end;
+
+dmem.vhd:
+
+library work;
+use work.riscv_pkg.all;
+
+entity dmem is
+
+	generic(
+        RISCV_Data_Width : natural := 32
+    );
+	
+	port(
+		clk, we: 			in 			BIT;
+		a, wd: 				in 			BIT_VECTOR(RISCV_Data_Width - 1 downto 0);
+		rd: 					out 			BIT_VECTOR(RISCV_Data_Width - 1 downto 0)
+	);
+end dmem;
+
+architecture behave of dmem is
+begin
+	process (clk, a) is
+		type ramtype is array (63 downto 0) of BIT_VECTOR(RISCV_Data_Width - 1 downto 0);
+		variable mem: ramtype;
+	begin
+		-- read or write memory
+		-- loop
+		if (clk'event and clk='1') then
+			if (we = '1') then mem(to_uinteger(a(7 downto 2))) := wd;
+			end if;
+		end if;
+		rd <= mem(to_uinteger(a(7 downto 2)));
+		-- wait on clk, a;
+		-- end loop;
+	end process;
+end;
+
+imem.vhd:
+
+library work;
+use work.riscv_pkg.all;
+use std.textio.all;
+
+entity imem is
+
+	generic(
+        RISCV_Data_Width : natural := 32
+    );
+	 
+	port(
+		a: 				in 		BIT_VECTOR(RISCV_Data_Width - 1 downto 0);
+		rd: 				out 		BIT_VECTOR(RISCV_Data_Width - 1 downto 0)
+	);
+	
+end imem;
+
+architecture behave of imem is
+	type ramtype is array (63 downto 0) of BIT_VECTOR(RISCV_Data_Width - 1 downto 0);
+	-- initialize memory from file
+	impure function init_ram_hex return ramtype is
+		file text_file : text open read_mode is "C:\Users\Usuario\Desktop\colombari\Projeto2023\src\riscvtest.txt";	--Alterar conforme sua estrutura de pastas--
+		variable text_line : line;
+		variable ram_content : ramtype;
+		variable i : integer := 0;
+		begin
+		for i in 0 to 63 loop -- set all contents low
+			ram_content(i) := (others => '0');
+		end loop;
+		while not endfile(text_file) loop -- set contents from file
+			readline(text_file, text_line);
+			hread(text_line, ram_content(i));		--******Compilar com VHDL-2008******--
+			i := i + 1;
+			exit when i=63;
+		end loop;
+		
+		return ram_content;
+	end function;
+	
+	signal mem : ramtype := init_ram_hex;
+	begin
+	-- read memory
+	process(a) begin
+		rd <= mem(to_uinteger(a(RISCV_Data_Width - 1 downto 2)));
+	end process;
+end;
+
+top.vhd:
+
+library work;
+use work.riscv_pkg.all;
+
+entity top is
+
+	generic(
+        RISCV_Data_Width : natural := 32
+    );
+	 
+	port(
+		clk, reset: 			in 			BIT;
+		WriteData, DataAdr: 	buffer 		BIT_VECTOR(RISCV_Data_Width - 1 downto 0);
+		MemWrite: 				buffer 		BIT
+	);
+	
+end;
+
+architecture test of top is
+	
+	signal PC, Instr, ReadData: 			BIT_VECTOR(RISCV_Data_Width - 1 downto 0);
+begin
+
+	-- instantiate processor and memories
+	
+	rvsingle: riscvsingle	generic map (RISCV_Data_Width) port map( clk, reset, PC, Instr,
+									MemWrite, DataAdr,
+									WriteData, ReadData);
+	imem1: imem 				generic map (RISCV_Data_Width) port map(PC, Instr);
+	dmem1: dmem 				generic map (RISCV_Data_Width) port map(clk, MemWrite, DataAdr, WriteData,
+	ReadData);
+end;
+
+fulladder.vhd:
+
+library work; 
+use work.riscv_pkg.all;
+ 
+entity fulladder is
+
+    port( 
+        a,b :           in          BIT;
+        cin :           in          BIT;
+        y :             out         BIT;
+        cout :          out         BIT
+    );
+end fulladder;
+ 
+architecture behave of fulladder is
+begin
+    y <= a XOR b XOR cin;
+    cout <= (a AND b) OR (cin AND a) OR (cin AND b);
+end;
+
+mul.vhd:
+
+library work; 
+use work.riscv_pkg.all;
+
+entity mul is 
+    generic(
+        Width : natural := 32
+    );
+
+    port(
+        a, b:           in          BIT_VECTOR(Width - 1 downto 0);
+        y:              out         BIT_VECTOR(2 * Width - 1 downto 0)
+    );
+end mul;
+
+architecture multiplication of mul is   
+
+    -- Vou definir um tipo para criar matrizes para armazenar os resultados das operacoes
+    -- AND, os carrys e as saidas 
+    type matrix is array (natural range <>, natural range <>) of bit;
+
+    -- Constants m e n 
+    constant m: integer := a'length;
+    constant n: integer := b'length;
+
+    -- Mi,j
+    signal AND_ARRAY:               matrix(0 to m-1, 0 to m+n-1);
+    -- Ci,j
+    signal CARRY_ARRAY:             matrix(0 to m-1, 0 to m+n);
+    -- Pi,j
+    signal OUTPUTS_ARRAY:           matrix(0 to m, 0 to m+n);
+    -- Expandindo o vetor b
+    signal blinha:                  bit_vector(m+n-1 downto 0);
+
+begin
+
+    -- Inicializando o vetor b expandido com o bit mais significativo de b 
+    -- para realizar a multiplicação em complemento de dois
+    blinha <= (m+n-1 downto n => (b(b'left))) & b; 
+
+--    -- Inicializando a matriz AND_ARRAY
+--    init_AND_ARRAY: for i in 0 to m generate 
+--        AND_ARRAY(i,0) <= '0';
+--    end generate init_AND_ARRAY;
+
+    -- Inicializando a matriz CARRY_ARRAY
+	 -- A primeira linha tem que ser carregada com o sinal 
+    init_CARRY_ARRAY: for i in 0 to m-1 generate 
+        CARRY_ARRAY(i,0) <= '0';
+    end generate init_CARRY_ARRAY;
+
+    -- Inicializando a matriz OUTPUTS_ARRAY
+    init_OUTPUTS_ARRAY_coluna: for i in 0 to m generate
+		  OUTPUTS_ARRAY(i,0) <= '0';
+    end generate init_OUTPUTS_ARRAY_coluna;
+	 
+	 init_OUTPUTS_ARRAY_linha: for j in 1 to m+n-1 generate 
+	     OUTPUTS_ARRAY(m,j) <= '0';
+	 end generate init_OUTPUTS_ARRAY_linha;
+
+    -- Carregando a matriz AND_ARRAY com os resultados das portas and
+    AND_ARRAY_coluna: for i in m-1 downto 0 generate 
+        AND_ARRAY_linha: for j in m+n-1 downto 0 generate 
+            AND_ARRAY(i,j) <= a(i) and blinha(j);
+        end generate AND_ARRAY_linha;
+    end generate AND_ARRAY_coluna;
+
+    -- Interligando os componentes 
+    OUTPUTS_ARRAY_coluna: for i in 0 to m-1 generate 
+        OUTPUTS_ARRAY_linha: for j in 0 to m+n-1 generate
+            adder_x : fulladder port map (
+						a => OUTPUTS_ARRAY(i+1,j), 
+						b => AND_ARRAY(i,j), 
+						cin => CARRY_ARRAY(i,j), 
+                  y => OUTPUTS_ARRAY(i,j+1), 
+						cout => CARRY_ARRAY(i,j+1)
+				);
+        end generate OUTPUTS_ARRAY_linha;
+    end generate OUTPUTS_ARRAY_coluna;
+	 
+    -- Ligando as saidas 
+    gen_y: for i in m+n-1 downto 0 generate 
+        y(i) <= OUTPUTS_ARRAY(0,i+1);
+    end generate gen_y;
+
+end multiplication;

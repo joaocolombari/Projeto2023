@@ -1,0 +1,56 @@
+.
+├── DE10_LITE
+│   ├── db
+│   ├── incremental_db
+│   │   └── compiled_partitions
+│   └── top_level_arquivos
+├── docs
+│   ├── atividade_01
+│   │   └── adendo
+│   ├── atividade_02
+│   │   └── adendo
+│   ├── atividade_03
+│   │   └── adendo
+│   ├── atividade_04
+│   │   └── adendo
+│   ├── atividade_05
+│   ├── atividade_06
+│   ├── atividade_07
+│   ├── atividade_08
+│   │   └── adendo
+│   ├── atividade_09
+│   │   └── adendo
+│   ├── atividade_10
+│   │   └── adendo
+│   ├── atividade_11
+│   ├── atividade_12
+│   │   └── adendo
+│   ├── atividade_13
+│   │   └── adendo
+│   ├── atividade_14
+│   ├── atividade_15
+│   ├── atividade_16
+│   │   └── simulacoes_quartus
+│   │       ├── dmem
+│   │       ├── imem
+│   │       └── top
+│   └── atividade_17
+│       ├── complemento
+│       ├── max
+│       ├── referencia
+│       │   └── Multiplier4bit
+│       │       ├── db
+│       │       ├── incremental_db
+│       │       │   └── compiled_partitions
+│       │       └── output_files
+│       └── velho
+├── modelsim
+│   └── work
+├── quartus
+│   ├── db
+│   ├── incremental_db
+│   │   └── compiled_partitions
+│   └── output_files
+└── src
+
+54 directories

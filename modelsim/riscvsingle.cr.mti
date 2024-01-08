@@ -1,0 +1,191 @@
+C:/Users/Usuario/Desktop/colombari/Projeto2023/src/mux2.vhd {1 {vcom -work work -2008 -explicit -stats=none C:/Users/Usuario/Desktop/colombari/Projeto2023/src/mux2.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package riscv_pkg
+-- Compiling entity mux2
+-- Compiling architecture behave of mux2
+
+} {} {}} C:/Users/Usuario/Desktop/colombari/Projeto2023/src/controller.vhd {1 {vcom -work work -2008 -explicit -stats=none C:/Users/Usuario/Desktop/colombari/Projeto2023/src/controller.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package riscv_pkg
+-- Compiling entity controller
+-- Compiling architecture struct of controller
+
+} {} {}} C:/Users/Usuario/Desktop/colombari/Projeto2023/src/mux3.vhd {1 {vcom -work work -2008 -explicit -stats=none C:/Users/Usuario/Desktop/colombari/Projeto2023/src/mux3.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package riscv_pkg
+-- Compiling entity mux3
+-- Compiling architecture behave of mux3
+
+} {} {}} C:/Users/Usuario/Desktop/colombari/Projeto2023/src/regfile.vhd {1 {vcom -work work -2008 -explicit -stats=none C:/Users/Usuario/Desktop/colombari/Projeto2023/src/regfile.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package riscv_pkg
+-- Compiling entity regfile
+-- Compiling architecture behave of regfile
+
+} {} {}} C:/Users/Usuario/Desktop/colombari/Projeto2023/src/aludec.vhd {1 {vcom -work work -2008 -explicit -stats=none C:/Users/Usuario/Desktop/colombari/Projeto2023/src/aludec.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package riscv_pkg
+-- Compiling entity aludec
+-- Compiling architecture behave of aludec
+
+} {} {}} C:/Users/Usuario/Desktop/colombari/Projeto2023/src/flopenr.vhd {1 {vcom -work work -2008 -explicit -stats=none C:/Users/Usuario/Desktop/colombari/Projeto2023/src/flopenr.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package riscv_pkg
+-- Compiling entity flopenr
+-- Compiling architecture asynchronous of flopenr
+
+} {} {}} C:/Users/Usuario/Desktop/colombari/Projeto2023/src/datapath.vhd {1 {vcom -work work -2008 -explicit -stats=none C:/Users/Usuario/Desktop/colombari/Projeto2023/src/datapath.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package riscv_pkg
+-- Compiling entity datapath
+-- Compiling architecture struct of datapath
+
+} {} {}} C:/Users/Usuario/Desktop/colombari/Projeto2023/src/testbench.vhd {1 {vcom -work work -2008 -explicit -stats=none C:/Users/Usuario/Desktop/colombari/Projeto2023/src/testbench.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package riscv_pkg
+-- Compiling entity testbench
+-- Compiling architecture test of testbench
+
+} {} {}} C:/Users/Usuario/Desktop/colombari/Projeto2023/src/riscv_pkg.vhd {1 {vcom -work work -2008 -explicit -stats=none C:/Users/Usuario/Desktop/colombari/Projeto2023/src/riscv_pkg.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling package riscv_pkg
+-- Compiling package body riscv_pkg
+-- Loading package riscv_pkg
+
+} {} {}} C:/Users/Usuario/Desktop/colombari/Projeto2023/src/imem.vhd {1 {vcom -work work -2008 -explicit -stats=none C:/Users/Usuario/Desktop/colombari/Projeto2023/src/imem.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package riscv_pkg
+-- Compiling entity imem
+-- Compiling architecture behave of imem
+
+} {} {}} C:/Users/Usuario/Desktop/colombari/Projeto2023/src/adder.vhd {1 {vcom -work work -2008 -explicit -stats=none C:/Users/Usuario/Desktop/colombari/Projeto2023/src/adder.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package riscv_pkg
+-- Compiling entity adder
+-- Compiling architecture behave of adder
+
+} {} {}} C:/Users/Usuario/Desktop/colombari/Projeto2023/src/risc_pkg.vhd {1 {vcom -work work -2008 -explicit -stats=none C:/Users/Usuario/Desktop/colombari/Projeto2023/src/risc_pkg.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling package riscv_pkg
+-- Compiling package body riscv_pkg
+-- Loading package riscv_pkg
+
+} {} {}} C:/Users/Usuario/Desktop/colombari/Projeto2023/src/top.vhd {1 {vcom -work work -2008 -explicit -stats=none C:/Users/Usuario/Desktop/colombari/Projeto2023/src/top.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package riscv_pkg
+-- Compiling entity top
+-- Compiling architecture test of top
+
+} {} {}} C:/Users/Usuario/Desktop/colombari/Projeto2023/src/dmem.vhd {1 {vcom -work work -2008 -explicit -stats=none C:/Users/Usuario/Desktop/colombari/Projeto2023/src/dmem.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package riscv_pkg
+-- Compiling entity dmem
+-- Compiling architecture behave of dmem
+
+} {} {}} C:/Users/Usuario/Desktop/colombari/Projeto2023/src/extend.vhd {1 {vcom -work work -2008 -explicit -stats=none C:/Users/Usuario/Desktop/colombari/Projeto2023/src/extend.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package riscv_pkg
+-- Compiling entity extend
+-- Compiling architecture behave of extend
+
+} {} {}} C:/Users/Usuario/Desktop/colombari/Projeto2023/src/maindec.vhd {1 {vcom -work work -2008 -explicit -stats=none C:/Users/Usuario/Desktop/colombari/Projeto2023/src/maindec.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package riscv_pkg
+-- Compiling entity maindec
+-- Compiling architecture behave of maindec
+
+} {} {}} C:/Users/Usuario/Desktop/colombari/Projeto2023/src/riscvsingle.vhd {1 {vcom -work work -2008 -explicit -stats=none C:/Users/Usuario/Desktop/colombari/Projeto2023/src/riscvsingle.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package riscv_pkg
+-- Compiling entity riscvsingle
+-- Compiling architecture struct of riscvsingle
+
+} {} {}} C:/Users/Usuario/Desktop/colombari/Projeto2023/src/alu.vhd {1 {vcom -work work -2008 -explicit -stats=none C:/Users/Usuario/Desktop/colombari/Projeto2023/src/alu.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package riscv_pkg
+-- Compiling entity alu
+-- Compiling architecture synth of alu
+
+} {} {}} C:/Users/Usuario/Desktop/colombari/Projeto2023/src/flopr.vhd {1 {vcom -work work -2008 -explicit -stats=none C:/Users/Usuario/Desktop/colombari/Projeto2023/src/flopr.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package riscv_pkg
+-- Compiling entity flopr
+-- Compiling architecture asynchronous of flopr
+
+} {} {}}

@@ -1,0 +1,52 @@
+-- 
+--	Atividade 16 - Criar um projeto denominado riscvsingle, na ferramenta ModelSim 
+-- (que servirá de base para simular todas as funcionalidades da arquitetura) e 
+-- incluir todos os arquivos da pasta src e realize alterações nas entidades dmem, 
+-- imem, top e testbench, de forma a:
+--
+-- i) incluir a solicitação de uso do pacote riscv_pkg, tornando visível todas as declarações;
+--
+-- ii) parametrizá-la em função de RISCV_Data_Width (da mesma forma que foi feito com a entidade riscvsingle);
+--
+-- iii) acrescentar ao pacote riscv_pkg a declaração de componente para as entidades top, imem e dmem.
+-- 
+-- iv) apresentar o resultado da simulação.
+--
+--	Joao Victor Colombari Carlet - nro USP 5274502
+--	
+--	12 de Dezembro de 2023 
+--
+
+library work;
+use work.riscv_pkg.all;
+
+entity dmem is
+
+	generic(
+        RISCV_Data_Width : natural := 32
+    );
+	
+	port(
+		clk, we: 			in 			BIT;
+		a, wd: 				in 			BIT_VECTOR(RISCV_Data_Width - 1 downto 0);
+		rd: 					out 			BIT_VECTOR(RISCV_Data_Width - 1 downto 0)
+	);
+end dmem;
+
+architecture behave of dmem is
+begin
+	process (clk, a) is
+		type ramtype is array (63 downto 0) of BIT_VECTOR(RISCV_Data_Width - 1 downto 0);
+		variable mem: ramtype;
+	begin
+		-- read or write memory
+		-- loop
+		if (clk'event and clk='1') then
+			if (we = '1') then mem(to_uinteger(a(7 downto 2))) := wd;
+			end if;
+		end if;
+		rd <= mem(to_uinteger(a(7 downto 2)));
+		wait on clk, a;
+		-- end loop;
+	end process;
+end;

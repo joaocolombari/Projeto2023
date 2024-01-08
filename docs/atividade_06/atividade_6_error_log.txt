@@ -1,0 +1,31 @@
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+	Info: Version 21.1.0 Build 842 10/21/2021 SJ Lite Edition
+	Info: Processing started: Mon Dec 11 18:13:26 2023
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off riscvsingle -c riscvsingle
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
+Info (12021): Found 1 design units, including 0 entities, in source file /users/eascarlet/documents/projeto2023/docs/atividade_6/risc_pkg.vhd
+	Info (12022): Found design unit 1: riscv_pkg
+Info (12021): Found 2 design units, including 1 entities, in source file /users/eascarlet/documents/projeto2023/src/mux3.vhd
+	Info (12022): Found design unit 1: mux3-behave
+	Info (12023): Found entity 1: mux3
+Info (12021): Found 2 design units, including 1 entities, in source file /users/eascarlet/documents/projeto2023/src/mux2.vhd
+	Info (12022): Found design unit 1: mux2-behave
+	Info (12023): Found entity 1: mux2
+Info (12021): Found 2 design units, including 1 entities, in source file /users/eascarlet/documents/projeto2023/src/flopr.vhd
+	Info (12022): Found design unit 1: flopr-asynchronous
+	Info (12023): Found entity 1: flopr
+Info (12021): Found 2 design units, including 1 entities, in source file /users/eascarlet/documents/projeto2023/src/flopenr.vhd
+	Info (12022): Found design unit 1: flopenr-asynchronous
+	Info (12023): Found entity 1: flopenr
+Info (12021): Found 2 design units, including 1 entities, in source file /users/eascarlet/documents/projeto2023/src/extend.vhd
+	Info (12022): Found design unit 1: extend-behave
+	Info (12023): Found entity 1: extend
+Error (12007): Top-level design entity "risc_pkg" is undefined
+Error: Quartus Prime Analysis & Synthesis was unsuccessful. 1 error, 1 warning
+	Error: Peak virtual memory: 4789 megabytes
+	Error: Processing ended: Mon Dec 11 18:13:34 2023
+	Error: Elapsed time: 00:00:08
+	Error: Total CPU time (on all processors): 00:00:13
+Error (293001): Quartus Prime Full Compilation was unsuccessful. 3 errors, 1 warning

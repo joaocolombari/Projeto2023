@@ -1,0 +1,51 @@
+Reading C:/intelFPGA/18.1/modelsim_ase/tcl/vsim/pref.tcl
+# Loading project riscvsingle
+# Compile of top.vhd was successful.
+# Compile of adder.vhd was successful.
+# Compile of alu.vhd was successful.
+# Compile of aludec.vhd was successful.
+# Compile of controller.vhd was successful.
+# Compile of datapath.vhd was successful.
+# Compile of dmem.vhd was successful.
+# Compile of extend.vhd was successful.
+# Compile of flopenr.vhd was successful.
+# Compile of flopr.vhd was successful.
+# Compile of imem.vhd was successful.
+# Compile of maindec.vhd was successful.
+# Compile of mux2.vhd was successful.
+# Compile of mux3.vhd was successful.
+# Compile of regfile.vhd was successful.
+# Compile of risc_pkg.vhd was successful.
+# Compile of riscv_pkg.vhd was successful.
+# Compile of riscvsingle.vhd was successful.
+# Compile of testbench.vhd was successful.
+# 19 compiles, 0 failed with no errors.
+vsim -gui work.testbench(test)
+# vsim -gui work.testbench(test) 
+# Start time: 17:11:55 on Dec 14,2023
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.riscv_pkg(body)
+# Loading work.testbench(test)
+# Loading work.top(test)
+# Loading work.riscvsingle(struct)
+# Loading work.controller(struct)
+# Loading work.maindec(behave)
+# Loading work.aludec(behave)
+# Loading work.datapath(struct)
+# Loading work.flopr(asynchronous)
+# Loading work.adder(behave)
+# Loading work.mux2(behave)
+# Loading work.regfile(behave)
+# Loading work.extend(behave)
+# Loading work.alu(fast)
+# Loading work.mux3(behave)
+# Loading work.imem(behave)
+# Loading work.dmem(behave)
+add wave -position insertpoint sim:/testbench/*
+run
+# ** Failure: NO ERRORS: Simulation succeeded
+#    Time: 185 ns  Iteration: 1  Process: /testbench/line__61 File: C:/Users/Usuario/Desktop/colombari/Projeto2023/src/testbench.vhd
+# Break in Process line__61 at C:/Users/Usuario/Desktop/colombari/Projeto2023/src/testbench.vhd line 65

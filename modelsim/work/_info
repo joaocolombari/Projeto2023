@@ -1,0 +1,783 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/intelFPGA/18.1/modelsim_ase/win32aloem
+Eadder
+Z0 w1702401818
+Z1 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
+Z2 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z3 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+Z4 DPx4 work 9 riscv_pkg 0 22 NJ];VAd4YGIZY4EieASYK1
+Z5 dC:/Users/Usuario/Desktop/colombari/Projeto2023/modelsim
+Z6 8C:/Users/Usuario/Desktop/colombari/Projeto2023/src/adder.vhd
+Z7 FC:/Users/Usuario/Desktop/colombari/Projeto2023/src/adder.vhd
+l0
+L15
+VcRzPiHN5PdlKM:5;lOT4M3
+!s100 O?ZezBM3=K3d=A2ZG2D=c0
+Z8 OV;C;10.5b;63
+33
+Z9 !s110 1702584698
+!i10b 1
+Z10 !s108 1702584697.000000
+Z11 !s90 -reportprogress|300|-work|work|-2008|-explicit|-stats=none|C:/Users/Usuario/Desktop/colombari/Projeto2023/src/adder.vhd|
+Z12 !s107 C:/Users/Usuario/Desktop/colombari/Projeto2023/src/adder.vhd|
+!i113 1
+Z13 o-work work -2008 -explicit
+Z14 tExplicit 1 CvgOpt 0
+Abehave
+R1
+R2
+R3
+R4
+DEx4 work 5 adder 0 22 cRzPiHN5PdlKM:5;lOT4M3
+l28
+L27
+Vn8G1ZLK:YGkjhXz2GBV4e0
+!s100 _IoViX;lGjAd]IGV=j[3V1
+R8
+33
+R9
+!i10b 1
+R10
+R11
+R12
+!i113 1
+R13
+R14
+Ealu
+Z15 w1702584606
+R1
+R2
+R3
+R4
+R5
+Z16 8C:/Users/Usuario/Desktop/colombari/Projeto2023/src/alu.vhd
+Z17 FC:/Users/Usuario/Desktop/colombari/Projeto2023/src/alu.vhd
+l0
+L19
+V3ZG`250_hKz`C;lT:Tm4h2
+!s100 XZoHHcOhfHkndE5;<R8>?1
+R8
+33
+R9
+!i10b 1
+Z18 !s108 1702584698.000000
+Z19 !s90 -reportprogress|300|-work|work|-2008|-explicit|-stats=none|C:/Users/Usuario/Desktop/colombari/Projeto2023/src/alu.vhd|
+Z20 !s107 C:/Users/Usuario/Desktop/colombari/Projeto2023/src/alu.vhd|
+!i113 1
+R13
+R14
+Asynth
+R1
+R2
+R3
+R4
+DEx4 work 3 alu 0 22 3ZG`250_hKz`C;lT:Tm4h2
+l38
+L33
+Vf;II606el3bFEd^?6<9=f1
+!s100 ]mDUmL^1ES2PcU7k[61mN3
+R8
+33
+R9
+!i10b 1
+R18
+R19
+R20
+!i113 1
+R13
+R14
+Ealudec
+Z21 w1702402683
+R1
+R2
+R3
+R4
+R5
+Z22 8C:/Users/Usuario/Desktop/colombari/Projeto2023/src/aludec.vhd
+Z23 FC:/Users/Usuario/Desktop/colombari/Projeto2023/src/aludec.vhd
+l0
+L13
+VGhi5KhSAhjNCkSFT]ZBME3
+!s100 =9^Z1>:M8a6U95XNnW<;00
+R8
+33
+R9
+!i10b 1
+R18
+Z24 !s90 -reportprogress|300|-work|work|-2008|-explicit|-stats=none|C:/Users/Usuario/Desktop/colombari/Projeto2023/src/aludec.vhd|
+Z25 !s107 C:/Users/Usuario/Desktop/colombari/Projeto2023/src/aludec.vhd|
+!i113 1
+R13
+R14
+Abehave
+R1
+R2
+R3
+R4
+DEx4 work 6 aludec 0 22 Ghi5KhSAhjNCkSFT]ZBME3
+l30
+L28
+VYM`[fc51?l9g<[laiBLMi1
+!s100 TI7mgz^N<fAG8CfZXa@oM2
+R8
+33
+R9
+!i10b 1
+R18
+R24
+R25
+!i113 1
+R13
+R14
+Econtroller
+Z26 w1702402588
+R1
+R2
+R3
+R4
+R5
+Z27 8C:/Users/Usuario/Desktop/colombari/Projeto2023/src/controller.vhd
+Z28 FC:/Users/Usuario/Desktop/colombari/Projeto2023/src/controller.vhd
+l0
+L19
+VGKS`[6SGe:SO?<N75YTmY0
+!s100 K:ZXOe7Wa^lCAm8HSQbdZ1
+R8
+33
+R9
+!i10b 1
+R18
+Z29 !s90 -reportprogress|300|-work|work|-2008|-explicit|-stats=none|C:/Users/Usuario/Desktop/colombari/Projeto2023/src/controller.vhd|
+Z30 !s107 C:/Users/Usuario/Desktop/colombari/Projeto2023/src/controller.vhd|
+!i113 1
+R13
+R14
+Astruct
+R1
+R2
+R3
+R4
+DEx4 work 10 controller 0 22 GKS`[6SGe:SO?<N75YTmY0
+l43
+L39
+VDB1Whi26@ejV1B6>;SDBQ2
+!s100 Q0NHEc@P[CQgcz48Vicl;0
+R8
+33
+R9
+!i10b 1
+R18
+R29
+R30
+!i113 1
+R13
+R14
+Edatapath
+Z31 w1702401713
+R1
+R2
+R3
+R4
+R5
+Z32 8C:/Users/Usuario/Desktop/colombari/Projeto2023/src/datapath.vhd
+Z33 FC:/Users/Usuario/Desktop/colombari/Projeto2023/src/datapath.vhd
+l0
+L19
+VmJ0H`JkhX=Xl>Ti[K6MC00
+!s100 FmV>EUfT0YHPI_hh7`V<_2
+R8
+33
+R9
+!i10b 1
+R18
+Z34 !s90 -reportprogress|300|-work|work|-2008|-explicit|-stats=none|C:/Users/Usuario/Desktop/colombari/Projeto2023/src/datapath.vhd|
+Z35 !s107 C:/Users/Usuario/Desktop/colombari/Projeto2023/src/datapath.vhd|
+!i113 1
+R13
+R14
+Astruct
+R1
+R2
+R3
+R4
+DEx4 work 8 datapath 0 22 mJ0H`JkhX=Xl>Ti[K6MC00
+l46
+L40
+VXKFd6N1[4WITDaMOVfCm?1
+!s100 ]L``0g9]XV0]7=o>:c=>[2
+R8
+33
+R9
+!i10b 1
+R18
+R34
+R35
+!i113 1
+R13
+R14
+Edmem
+Z36 w1702408004
+R1
+R2
+R3
+R4
+R5
+Z37 8C:/Users/Usuario/Desktop/colombari/Projeto2023/src/dmem.vhd
+Z38 FC:/Users/Usuario/Desktop/colombari/Projeto2023/src/dmem.vhd
+l0
+L23
+VdGPgf@S8a6LV;_UCYARZR1
+!s100 _;3YL6`LXQJJCfd55=Yj[3
+R8
+33
+R9
+!i10b 1
+R18
+Z39 !s90 -reportprogress|300|-work|work|-2008|-explicit|-stats=none|C:/Users/Usuario/Desktop/colombari/Projeto2023/src/dmem.vhd|
+Z40 !s107 C:/Users/Usuario/Desktop/colombari/Projeto2023/src/dmem.vhd|
+!i113 1
+R13
+R14
+Abehave
+R1
+R2
+R3
+R4
+DEx4 work 4 dmem 0 22 dGPgf@S8a6LV;_UCYARZR1
+l37
+L36
+V];fO<[hYc@TGWmOMiB@R=3
+!s100 l7X5:OfznOPbj>^@hRQ9L1
+R8
+33
+R9
+!i10b 1
+R18
+R39
+R40
+!i113 1
+R13
+R14
+Eextend
+Z41 w1702490937
+R1
+R2
+R3
+R4
+R5
+Z42 8C:/Users/Usuario/Desktop/colombari/Projeto2023/src/extend.vhd
+Z43 FC:/Users/Usuario/Desktop/colombari/Projeto2023/src/extend.vhd
+l0
+L26
+VVmEQfGV3`QhC4>g;mFY9m1
+!s100 7>B=]31WSAEm>G66k:YIa1
+R8
+33
+R9
+!i10b 1
+R18
+Z44 !s90 -reportprogress|300|-work|work|-2008|-explicit|-stats=none|C:/Users/Usuario/Desktop/colombari/Projeto2023/src/extend.vhd|
+Z45 !s107 C:/Users/Usuario/Desktop/colombari/Projeto2023/src/extend.vhd|
+!i113 1
+R13
+R14
+Abehave
+R1
+R2
+R3
+R4
+DEx4 work 6 extend 0 22 VmEQfGV3`QhC4>g;mFY9m1
+l44
+L38
+V;7hCbBD277ZPVzF[3J;N;3
+!s100 o_nDTDmAO[6?AMRi]Ylz03
+R8
+33
+R9
+!i10b 1
+R18
+R44
+R45
+!i113 1
+R13
+R14
+Eflopenr
+Z46 w1702239092
+R1
+R2
+R3
+R4
+R5
+Z47 8C:/Users/Usuario/Desktop/colombari/Projeto2023/src/flopenr.vhd
+Z48 FC:/Users/Usuario/Desktop/colombari/Projeto2023/src/flopenr.vhd
+l0
+L18
+VWGmAID2o>Ob:>;h]A`bb23
+!s100 d?D3QFBCne?QLiLVV:k:K3
+R8
+33
+R9
+!i10b 1
+R18
+Z49 !s90 -reportprogress|300|-work|work|-2008|-explicit|-stats=none|C:/Users/Usuario/Desktop/colombari/Projeto2023/src/flopenr.vhd|
+Z50 !s107 C:/Users/Usuario/Desktop/colombari/Projeto2023/src/flopenr.vhd|
+!i113 1
+R13
+R14
+Aasynchronous
+R1
+R2
+R3
+R4
+DEx4 work 7 flopenr 0 22 WGmAID2o>Ob:>;h]A`bb23
+l32
+L31
+VCjml^^9lXPZgl6:6n?hi[3
+!s100 Sln6XDd@IzGTUGKc9Cizz2
+R8
+33
+R9
+!i10b 1
+R18
+R49
+R50
+!i113 1
+R13
+R14
+Eflopr
+Z51 w1702239120
+R1
+R2
+R3
+R4
+R5
+Z52 8C:/Users/Usuario/Desktop/colombari/Projeto2023/src/flopr.vhd
+Z53 FC:/Users/Usuario/Desktop/colombari/Projeto2023/src/flopr.vhd
+l0
+L18
+VW9eEaY2ND=8MaASPlG?[c2
+!s100 LHJObC;>k:H7IKUz5V_:o2
+R8
+33
+R9
+!i10b 1
+R18
+Z54 !s90 -reportprogress|300|-work|work|-2008|-explicit|-stats=none|C:/Users/Usuario/Desktop/colombari/Projeto2023/src/flopr.vhd|
+Z55 !s107 C:/Users/Usuario/Desktop/colombari/Projeto2023/src/flopr.vhd|
+!i113 1
+R13
+R14
+Aasynchronous
+R1
+R2
+R3
+R4
+DEx4 work 5 flopr 0 22 W9eEaY2ND=8MaASPlG?[c2
+l32
+L31
+VF0Di?DGK@a[zAbS0[R6R60
+!s100 c1lMIM78ZA5K3m_ao41Yc2
+R8
+33
+R9
+!i10b 1
+R18
+R54
+R55
+!i113 1
+R13
+R14
+Eimem
+Z56 w1702407441
+R1
+R2
+R3
+R4
+R5
+Z57 8C:/Users/Usuario/Desktop/colombari/Projeto2023/src/imem.vhd
+Z58 FC:/Users/Usuario/Desktop/colombari/Projeto2023/src/imem.vhd
+l0
+L24
+V:PXmYL1ZGM;EWZY[ZmD8A1
+!s100 WBnRPT3Rk56J?1Z>Tk2T`3
+R8
+33
+R9
+!i10b 1
+R18
+Z59 !s90 -reportprogress|300|-work|work|-2008|-explicit|-stats=none|C:/Users/Usuario/Desktop/colombari/Projeto2023/src/imem.vhd|
+Z60 !s107 C:/Users/Usuario/Desktop/colombari/Projeto2023/src/imem.vhd|
+!i113 1
+R13
+R14
+Abehave
+R1
+R2
+R3
+R4
+DEx4 work 4 imem 0 22 :PXmYL1ZGM;EWZY[ZmD8A1
+l60
+L37
+V=G?iK@z0hCSMSoWl794Jk0
+!s100 C6:bWmdhQ;7OBV9nOa<Qm0
+R8
+33
+R9
+!i10b 1
+R18
+R59
+R60
+!i113 1
+R13
+R14
+Emaindec
+Z61 w1702402378
+R1
+R2
+R3
+R4
+R5
+Z62 8C:/Users/Usuario/Desktop/colombari/Projeto2023/src/maindec.vhd
+Z63 FC:/Users/Usuario/Desktop/colombari/Projeto2023/src/maindec.vhd
+l0
+L13
+V2@PnRhgOOAnI5EYzT:IHI2
+!s100 1_?3n12Dg=ZGd^jILf>WS2
+R8
+33
+R9
+!i10b 1
+R18
+Z64 !s90 -reportprogress|300|-work|work|-2008|-explicit|-stats=none|C:/Users/Usuario/Desktop/colombari/Projeto2023/src/maindec.vhd|
+Z65 !s107 C:/Users/Usuario/Desktop/colombari/Projeto2023/src/maindec.vhd|
+!i113 1
+R13
+R14
+Abehave
+R1
+R2
+R3
+R4
+DEx4 work 7 maindec 0 22 2@PnRhgOOAnI5EYzT:IHI2
+l32
+L30
+V2XCDX=oS79gz=K^gcJnez0
+!s100 EJ1Af0[bef1V[Bc4YFN^:0
+R8
+33
+R9
+!i10b 1
+R18
+R64
+R65
+!i113 1
+R13
+R14
+Emux2
+Z66 w1702239110
+R1
+R2
+R3
+R4
+R5
+Z67 8C:/Users/Usuario/Desktop/colombari/Projeto2023/src/mux2.vhd
+Z68 FC:/Users/Usuario/Desktop/colombari/Projeto2023/src/mux2.vhd
+l0
+L14
+VDUGG;hWeSm[7CZejCW1^@1
+!s100 F3R=WM<AoZd]Xkdai;k`L2
+R8
+33
+R9
+!i10b 1
+R18
+Z69 !s90 -reportprogress|300|-work|work|-2008|-explicit|-stats=none|C:/Users/Usuario/Desktop/colombari/Projeto2023/src/mux2.vhd|
+Z70 !s107 C:/Users/Usuario/Desktop/colombari/Projeto2023/src/mux2.vhd|
+!i113 1
+R13
+R14
+Abehave
+R1
+R2
+R3
+R4
+DEx4 work 4 mux2 0 22 DUGG;hWeSm[7CZejCW1^@1
+l28
+L27
+V?nL3_CVeNakjGFdC@Q1T@1
+!s100 ZPi]i_;z?I;jBH6YJ>@TO0
+R8
+33
+R9
+!i10b 1
+R18
+R69
+R70
+!i113 1
+R13
+R14
+Emux3
+Z71 w1702239232
+R1
+R2
+R3
+R4
+R5
+Z72 8C:/Users/Usuario/Desktop/colombari/Projeto2023/src/mux3.vhd
+Z73 FC:/Users/Usuario/Desktop/colombari/Projeto2023/src/mux3.vhd
+l0
+L17
+VH=X]?Xd4^W>5H3ZInI23_2
+!s100 oNH:MG_b8PzBHlF]>@@4W2
+R8
+33
+Z74 !s110 1702584699
+!i10b 1
+R18
+Z75 !s90 -reportprogress|300|-work|work|-2008|-explicit|-stats=none|C:/Users/Usuario/Desktop/colombari/Projeto2023/src/mux3.vhd|
+Z76 !s107 C:/Users/Usuario/Desktop/colombari/Projeto2023/src/mux3.vhd|
+!i113 1
+R13
+R14
+Abehave
+R1
+R2
+R3
+R4
+DEx4 work 4 mux3 0 22 H=X]?Xd4^W>5H3ZInI23_2
+l31
+L30
+V1UC809=;BHRJE?:W[_ne:0
+!s100 CW2e@B4P3?Fd?mfY02I8P0
+R8
+33
+R74
+!i10b 1
+R18
+R75
+R76
+!i113 1
+R13
+R14
+Eregfile
+Z77 w1702402793
+R1
+R2
+R3
+R4
+R5
+Z78 8C:/Users/Usuario/Desktop/colombari/Projeto2023/src/regfile.vhd
+Z79 FC:/Users/Usuario/Desktop/colombari/Projeto2023/src/regfile.vhd
+l0
+L14
+V@?obMBn`>UBSZF?kMK^:>0
+!s100 ;C8cHg]]L[@l`7hAG1Sc^3
+R8
+33
+R74
+!i10b 1
+Z80 !s108 1702584699.000000
+Z81 !s90 -reportprogress|300|-work|work|-2008|-explicit|-stats=none|C:/Users/Usuario/Desktop/colombari/Projeto2023/src/regfile.vhd|
+Z82 !s107 C:/Users/Usuario/Desktop/colombari/Projeto2023/src/regfile.vhd|
+!i113 1
+R13
+R14
+Abehave
+R1
+R2
+R3
+R4
+DEx4 work 7 regfile 0 22 @?obMBn`>UBSZF?kMK^:>0
+l31
+L28
+V3[ezA8lozZ5ze<Y0FAlJ@2
+!s100 [^aZ1G1XOT]eR7RD5]cJ^0
+R8
+33
+R74
+!i10b 1
+R80
+R81
+R82
+!i113 1
+R13
+R14
+Priscv_pkg
+R1
+R2
+R3
+Z83 w1702491890
+R5
+Z84 8C:/Users/Usuario/Desktop/colombari/Projeto2023/src/riscv_pkg.vhd
+Z85 FC:/Users/Usuario/Desktop/colombari/Projeto2023/src/riscv_pkg.vhd
+l0
+L22
+VNJ];VAd4YGIZY4EieASYK1
+!s100 kV><D6mfnD9:1JgDFXaZ[2
+R8
+33
+b1
+R74
+!i10b 1
+R80
+Z86 !s90 -reportprogress|300|-work|work|-2008|-explicit|-stats=none|C:/Users/Usuario/Desktop/colombari/Projeto2023/src/riscv_pkg.vhd|
+Z87 !s107 C:/Users/Usuario/Desktop/colombari/Projeto2023/src/riscv_pkg.vhd|
+!i113 1
+R13
+R14
+Bbody
+R4
+R1
+R2
+R3
+l0
+L304
+V<WB:=P5Z5lem4kYBENmE[2
+!s100 NQ4ehVJljkhYo9ZW;:kJI0
+R8
+33
+R74
+!i10b 1
+R80
+R86
+R87
+!i113 1
+R13
+R14
+Eriscvsingle
+Z88 w1702402298
+R1
+R2
+R3
+R4
+R5
+Z89 8C:/Users/Usuario/Desktop/colombari/Projeto2023/src/riscvsingle.vhd
+Z90 FC:/Users/Usuario/Desktop/colombari/Projeto2023/src/riscvsingle.vhd
+l0
+L19
+VzWLzBcebJ0D2`8CB6Q4Ya3
+!s100 nKG1:71IEReRCJBK7`_o93
+R8
+33
+R74
+!i10b 1
+R80
+Z91 !s90 -reportprogress|300|-work|work|-2008|-explicit|-stats=none|C:/Users/Usuario/Desktop/colombari/Projeto2023/src/riscvsingle.vhd|
+Z92 !s107 C:/Users/Usuario/Desktop/colombari/Projeto2023/src/riscvsingle.vhd|
+!i113 1
+R13
+R14
+Astruct
+R1
+R2
+R3
+R4
+DEx4 work 11 riscvsingle 0 22 zWLzBcebJ0D2`8CB6Q4Ya3
+l38
+L34
+VXm9IYa1PbjfRgL;U>Hcah1
+!s100 RMKOjXgEd=XjL74hd4=AL2
+R8
+33
+R74
+!i10b 1
+R80
+R91
+R92
+!i113 1
+R13
+R14
+Etestbench
+Z93 w1702584583
+R1
+R2
+R3
+R4
+R5
+Z94 8C:/Users/Usuario/Desktop/colombari/Projeto2023/src/testbench.vhd
+Z95 FC:/Users/Usuario/Desktop/colombari/Projeto2023/src/testbench.vhd
+l0
+L23
+VCPRjHS`z[:^0dPZ7LlazK1
+!s100 kA?4Rj1BZ1U[z9CVmj3`13
+R8
+33
+R74
+!i10b 1
+R80
+Z96 !s90 -reportprogress|300|-work|work|-2008|-explicit|-stats=none|C:/Users/Usuario/Desktop/colombari/Projeto2023/src/testbench.vhd|
+Z97 !s107 C:/Users/Usuario/Desktop/colombari/Projeto2023/src/testbench.vhd|
+!i113 1
+R13
+R14
+Atest
+R1
+R2
+R3
+R4
+Z98 DEx4 work 9 testbench 0 22 CPRjHS`z[:^0dPZ7LlazK1
+l40
+L31
+V8YK2D::_mB65kgfN6L^JC2
+!s100 C3T@D83ZH=;aVbO`@@WhO3
+R8
+33
+R74
+!i10b 1
+R80
+R96
+R97
+!i113 1
+R13
+R14
+Etop
+Z99 w1702398147
+R1
+R2
+R3
+R4
+R5
+Z100 8C:/Users/Usuario/Desktop/colombari/Projeto2023/src/top.vhd
+Z101 FC:/Users/Usuario/Desktop/colombari/Projeto2023/src/top.vhd
+l0
+L23
+V8dE9e[n:HCJOZ[ScU<FC]3
+!s100 R2BDk;n3IOA^<GYn?iOil2
+R8
+33
+Z102 !s110 1702584697
+!i10b 1
+R10
+Z103 !s90 -reportprogress|300|-work|work|-2008|-explicit|-stats=none|C:/Users/Usuario/Desktop/colombari/Projeto2023/src/top.vhd|
+Z104 !s107 C:/Users/Usuario/Desktop/colombari/Projeto2023/src/top.vhd|
+!i113 1
+R13
+R14
+Atest
+R1
+R2
+R3
+R4
+DEx4 work 3 top 0 22 8dE9e[n:HCJOZ[ScU<FC]3
+l40
+L37
+V9iUUKH8U>0h56B>Xe^URf2
+!s100 eR3WZjD;BF0kOoC2@joM92
+R8
+33
+R102
+!i10b 1
+R10
+R103
+R104
+!i113 1
+R13
+R14

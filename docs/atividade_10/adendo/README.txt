@@ -1,0 +1,1 @@
+O codigo verilog tinha um erro na hora de chamar um bit do vetor result. Chamava result[4], mas result tem 4 bits, então deve chamar result[4 - 1]
