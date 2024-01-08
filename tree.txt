@@ -35,15 +35,13 @@
 │   │       ├── imem
 │   │       └── top
 │   └── atividade_17
-│       ├── complemento
-│       ├── max
-│       ├── referencia
-│       │   └── Multiplier4bit
-│       │       ├── db
-│       │       ├── incremental_db
-│       │       │   └── compiled_partitions
-│       │       └── output_files
-│       └── velho
+│       ├── simuilacoes_modelsim
+│       └── simulacoes_quartus
+│           ├── alu
+│           ├── aludec
+│           ├── controller
+│           ├── mul
+│           └── riscvsingle
 ├── modelsim
 │   └── work
 ├── quartus
@@ -52,5 +50,3 @@
 │   │   └── compiled_partitions
 │   └── output_files
 └── src
-
-54 directories
