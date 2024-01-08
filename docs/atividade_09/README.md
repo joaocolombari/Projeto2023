@@ -51,4 +51,8 @@ The ninth activity was to add the regfile.vhd file to the DE10_LITE_riscvsingle 
 
 ### Development 
 
-'reg.vhd' was added to DE10_LITE_riscvsingle project, the `DE10_LITE_riscvsingle.v` file was changed acording to what was specified and the FPGA was loaded. The compilation results are available in the "error_log.txt" file and the RTL in the "RTL_viewer.pdf" file inside of "/adendo". In this location, there is also a video demonstrating its behaviour. 
+'regfile.vhd' was added to DE10_LITE_riscvsingle project, the `DE10_LITE_riscvsingle.v` file was changed acording to what was specified and the FPGA was loaded. The compilation results are available in the "error_log.txt" file and the RTL in the "RTL_viewer.pdf" file inside of "/adendo". The video demonstrating its behaviour is available [here].
+
+<!-- REFERENCES -->
+
+[here]: https://drive.google.com/file/d/1mDCGlVONKCic8_DCeyc_gyx0y7_BBRXv/view?usp=share_link
