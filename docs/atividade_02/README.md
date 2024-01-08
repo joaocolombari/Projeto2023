@@ -63,4 +63,8 @@ The second task was to include the mux3.vhd file in the DE10_LITE_riscvsingle pr
 
 ### Development 
 
-'mux3.vhd' was added to DE10_LITE_riscvsingle project and the `DE10_LITE_riscvsingle.v` file was changed acording to what was specified and the FPGA was loaded. The compilation results are available in the "error_log.txt" file and the RTL in the "RTL_viewer.pdf" file inside of "/adendo". In this location, there is also a video demonstrating its behaviour. 
+'mux3.vhd' was added to DE10_LITE_riscvsingle project and the `DE10_LITE_riscvsingle.v` file was changed acording to what was specified and the FPGA was loaded. The compilation results are available in the "error_log.txt" file and the RTL in the "RTL_viewer.pdf" file inside of "/adendo". The video demonstrating its behaviour is available [here].
+
+<!-- REFERENCES -->
+
+[here]: https://drive.google.com/file/d/1zwYamj4BpEGpH85ZSGDywBfu4TBZ7DKQ/view?usp=share_link
