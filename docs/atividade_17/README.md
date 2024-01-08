@@ -27,7 +27,7 @@ The resolution of this exercise was intended to be done using the extended resol
 
 <p align="center">
  
-  <img src="https://github.com/joaocolombari/Projeto2023/assets/105496210/873b268d-2382-4af3-a36f-f5e40b493f69" width="600">
+  <img src="https://github.com/joaocolombari/Projeto2023/assets/105496210/c02a0c27-934c-471a-8efc-17f00c350c0a" width="600">
 
 </p>
 
