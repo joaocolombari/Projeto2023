@@ -31,7 +31,7 @@ The resolution of this exercise was intended to be done using the extended resol
 
 </p>
 
-Based on such exercise, the professor sugested a method for expanding the solution in order to acheive a parameterized solution, which was very helpfull. Together with this solution, the author implemented the full adder, which is available in this directory as "fulladder.vhd" and instantiated it within the mul architecture just as it is shown in the exercise and the mul was almost successfully implemented. This first version is available here as "mul_1.vhd" together with a testbench, named "mul_1_testbench.vhd".
+Based on such exercise, the professor sugested a method for expanding the solution in order to acheive a parameterized solution, which was very helpfull. Together with this solution, the author implemented the fulladder and instantiated it within the mul architecture just as it is shown in the exercise and the mul was implemented. In order to test it, a testbench - testbench_mul.vhd - was created. 
 
 The testbench tests for unsigned x unsigned, unsigned  x signed, signed x unsigned and signed x signed in the following way.
 
@@ -130,7 +130,7 @@ function absolute(i0 : BIT_VECTOR) return bit_vector is
     end function absolute; 
 ```
 
-Making these changes and running a ModelSim simulation with the same testbench, the mul finally seemed to work.
+Making these changes and running a ModelSim simulation with the same testbench, the mul finally seemed to work. This simulation's outputs are available in ./simulacoes_modelsim. All the refered files were added to the project and tested as usual. The files are available in the "../src" directory and the Quartus outputs in "./simulacoes_quartus".
 
 ### Creating the instruction
 
@@ -255,13 +255,13 @@ architecture behave of aludec is
 	signal funct7b5: BIT := funct7(5);		-- defined funct7b5 as was and
 	signal funct7b0: BIT := funct7(0);	  	-- defined funct7b0 to decode MUL
 begin
-	RtypeSub <= funct7b5 and opb5; -- TRUE for R-type subtract
+	RtypeSub <= (funct7b5 and opb5); -- TRUE for R-type subtract
 	process(opb5, funct3, funct7b5, ALUOp, RtypeSub) begin
 		case ALUOp is
 			when "00" => ALUControl <= "000"; -- addition
 			when "01" => ALUControl <= "001"; -- subtraction
 			when others => 
-				if funct7b0 = '1' then				-- MUL case
+				if (ALUOp = "10" and funct7 = "0000001") then				-- MUL case
 					case funct3 is 
 					when "001" => ALUControl <= "100";	-- MULH
 					when "011" => ALUControl <= "110";	-- MULHU
@@ -269,7 +269,7 @@ begin
 					when others => ALUControl <= "000"; -- unknown	("---")
 					end case;
 				
-				else						-- std riscvsingle case
+				else										-- std riscvsingle case
 					case funct3 is -- R-type or I-type ALU
 					when "000" => if RtypeSub = '1' then
 										ALUControl <= "001"; -- sub
@@ -343,7 +343,17 @@ begin
 
 Here the MUL is instantiated with the inputs a and b and the 2 * Width - 1 temporary result variable as an output. The ALU result is associated with the MUL result's most significant bits whenever the ALUControl equals the ones defined as the multiplication. 
 
-In order to make everything work, the riscv_pkg had to be updated with the new funct7 vector. With all these changes done, the new riscvsingle, controller, aludec and alu error logs and RTL viewers were obtained in Quartus and are available in "./simulacoes_quartus".
+In order to make everything work, the riscv_pkg had to be updated with the new funct7 vector. With all these changes done, the new riscvsingle, controller, aludec and alu error logs and RTL viewers were obtained in Quartus and are available in "./simulacoes_quartus". This finally finishes the project.
+
+## Future Work
+
+Altho the risc and the multiplier work, there are some changes that should be futurelly done. They are the following:
+
+- Modifying the mul.vhd file in such a fashion that the multiplications occur right independently on the position of the signed or unsigned numbers, and thus;
+
+- Removing the logic made to test for signed values and the absolute function since there would be no longer a need for such logic;
+
+- Implementing the "*" operator as an instance for the mul.vhd component.
 
 <!-- REFERENCES -->
 [1]: https://riscv.org/wp-content/uploads/2017/05/riscv-spec-v2.2.pdf
